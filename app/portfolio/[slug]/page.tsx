@@ -21,10 +21,20 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 }
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
-  return PROJECTS.map((project) => ({
+  console.log(
+    "[v0] Generating static params for projects:",
+    PROJECTS.map((p) => p.slug),
+  )
+
+  const params = PROJECTS.map((project) => ({
     slug: project.slug,
   }))
+
+  console.log("[v0] Generated params:", params)
+  return params
 }
 
 export default function ProjectPage(props: ProjectPageProps) {

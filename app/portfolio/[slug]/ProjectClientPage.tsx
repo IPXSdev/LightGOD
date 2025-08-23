@@ -200,11 +200,19 @@ function ProjectContent({ project }: { project: any }) {
 }
 
 export default function ProjectClientPage(props: ProjectPageProps) {
+  console.log("[v0] Looking for project with slug:", props.params.slug)
+  console.log(
+    "[v0] Available projects:",
+    PROJECTS.map((p) => p.slug),
+  )
+
   const project = PROJECTS.find((p) => p.slug === props.params.slug)
 
   if (!project) {
+    console.log("[v0] Project not found, calling notFound()")
     notFound()
   }
 
+  console.log("[v0] Found project:", project.title)
   return <ProjectContent project={project} />
 }

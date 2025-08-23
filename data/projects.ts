@@ -1,6 +1,8 @@
 import type { Project } from "./types"
 import { VIDEOS } from "./videos"
 
+console.log("[v0] Loading projects data...")
+
 export const PROJECTS: Project[] = [
   {
     slug: "pitch-decks",
@@ -66,3 +68,10 @@ export const PROJECTS: Project[] = [
     summary: "50,000+ assets—film posters, tech/auto viz, fashion, architecture, food, illustration, music.",
   },
 ]
+
+console.log(
+  "[v0] Loaded",
+  PROJECTS.length,
+  "projects with slugs:",
+  PROJECTS.map((p) => p.slug),
+)
