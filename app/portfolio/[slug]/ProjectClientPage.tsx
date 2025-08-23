@@ -117,7 +117,7 @@ function ProjectContent({ project }: { project: any }) {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">SERVICES</h3>
+            <h3 className="text-lg font-semibent mb-4 text-white">SERVICES</h3>
             <div className="space-y-2">
               {project.services?.map((service: string) => (
                 <p key={service} className="text-white/70">
@@ -182,15 +182,13 @@ function ProjectContent({ project }: { project: any }) {
 
         <div className="mt-16 pt-8 border-t border-white/10">
           <div className="text-center bg-white/5 rounded-2xl p-8">
-            <button
-              onClick={() => {
-                scrollToTop()
-                window.location.href = cta.href
-              }}
-              className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors mb-3"
+            <Link
+              href={cta.href}
+              onClick={scrollToTop}
+              className="inline-block bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-colors mb-3"
             >
               {cta.button}
-            </button>
+            </Link>
             <p className="text-white/70 text-sm">{cta.subtext}</p>
           </div>
         </div>
