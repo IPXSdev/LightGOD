@@ -178,7 +178,7 @@ function ProjectContent({ project }: { project: any }) {
         {/* NSFW Gate */}
         {project.nsfw && (
           <div className="mb-8">
-            <NsfwGate />
+            <NsfwGate title={project.title} />
           </div>
         )}
 

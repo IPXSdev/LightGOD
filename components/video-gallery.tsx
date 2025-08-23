@@ -1,14 +1,22 @@
+"use client"
+
 import { VideoEmbed } from "./video-embed"
 import { VIDEOS } from "@/data/videos"
+import type { VideoItem } from "@/data/types"
 
-export function VideoGallery() {
-  const featuredReel = VIDEOS.find((video) => video.featured)
-  const otherVideos = VIDEOS.filter((video) => !video.featured)
+interface VideoGalleryProps {
+  videos?: VideoItem[]
+}
+
+export function VideoGallery({ videos }: VideoGalleryProps) {
+  const videoList = videos || VIDEOS
+  const featuredReel = videoList.find((video) => video.featured)
+  const otherVideos = videoList.filter((video) => !video.featured)
 
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="font-heading text-3xl font-bold mb-4">Directed & Produced</h2>
+        <h2 className="font-heading text-3xl font-bold mb-4 text-white">Directed & Produced</h2>
         <p className="text-white/70">
           A selection of music videos, series, and creative projects showcasing cinematic storytelling.
         </p>
