@@ -13,7 +13,7 @@ interface ProjectPageProps {
 }
 
 function ProjectContent({ project }: { project: any }) {
-  const currentIndex = PROJECTS.findIndex((p) => p.slug === project.slug)
+  const currentIndex = project ? PROJECTS.findIndex((p) => p.slug === project.slug) : -1
   const prevProject = currentIndex > 0 ? PROJECTS[currentIndex - 1] : null
   const nextProject = currentIndex < PROJECTS.length - 1 ? PROJECTS[currentIndex + 1] : null
 
@@ -24,6 +24,8 @@ function ProjectContent({ project }: { project: any }) {
   }
 
   const getProjectCTA = () => {
+    if (!project) return { button: "Start a Project", subtext: "Let's bring your vision to life.", href: "/contact" }
+
     switch (project.slug) {
       case "pitch-decks":
         return {
@@ -71,6 +73,24 @@ function ProjectContent({ project }: { project: any }) {
   }
 
   const cta = getProjectCTA()
+
+  if (!project) {
+    return (
+      <div className="min-h-screen py-20">
+        <div className="container mx-auto max-w-4xl px-4">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-4 text-white">Project Not Found</h1>
+            <Button asChild variant="ghost" className="text-white/70 hover:text-white">
+              <Link href="/portfolio">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Portfolio
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen py-20">
@@ -208,5 +228,5 @@ export default function ProjectClientPage(props: ProjectPageProps) {
   const project = PROJECTS.find((p) => p.slug === props.params.slug)
 
   console.log("[v0] Found project:", project?.title)
-  return <ProjectContent project={project!} />
+  return <ProjectContent project={project} />
 }
