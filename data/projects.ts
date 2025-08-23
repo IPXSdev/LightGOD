@@ -1,0 +1,68 @@
+import type { Project } from "./types"
+import { VIDEOS } from "./videos"
+
+export const PROJECTS: Project[] = [
+  {
+    slug: "pitch-decks",
+    title: "Pitch Decks – Client Portfolio",
+    category: ["Pitch Decks", "Writing"],
+    role: ["Designer", "Copywriter", "Creative Strategist"],
+    services: ["Pitch Deck Design", "Copywriting", "Story Consulting"],
+    cover: "/pitch-decks.png",
+    summary: "Investor-ready decks across entertainment, culture, and tech.",
+    media: [{ type: "pdf", caption: "Representative slides shown; full decks under NDA." }],
+  },
+  {
+    slug: "video-gallery",
+    title: "Directed & Produced – Watch",
+    category: ["Filmmaking", "Music Video"],
+    role: ["Director", "Producer", "Editor"],
+    services: ["Direction", "Production", "Post"],
+    cover: "/directed-produced.jpg",
+    summary: "Embedded selection incl. Gotta Love Kira, Blxst, Nitro, Peyton, WABP.",
+    videoGallery: VIDEOS,
+  },
+  {
+    slug: "film-scripts",
+    title: "Screenwriting & Punch-Ups",
+    category: ["Writing", "Filmmaking"],
+    role: ["Writer", "Script Doctor"],
+    services: ["Original IP", "Rewrites", "Series Development"],
+    cover: "/screenwriting-punchups.png",
+    summary:
+      "Features/pilots: Imani's Curse, Blockchain Bandits, The 3rd Mask, The Sitter, Through the Veil, Ghost Hustlers.",
+  },
+  {
+    slug: "saturated-melanin",
+    title: "Saturated Melanin (Fine Art Book)",
+    category: ["Merch", "Photography"],
+    year: 2024,
+    role: ["Photographer", "Poet", "Creative Director"],
+    services: ["Fine Art Photography", "Book Design", "Creative Direction"],
+    nsfw: true,
+    cover: "/saturated-melanin.png",
+    summary: "Experimental nude fine art photography fused with poetry—melanin, light, heritage.",
+    brief: "Coffee table book blending ultraviolet-driven photography with intimate verse.",
+    process: "Concept → set/lighting → poetry pairing → layout → gallery edit.",
+    results: "Flagship personal project; exhibition-ready series.",
+    media: [{ type: "pdf", caption: "Private preview available on request." }],
+  },
+  {
+    slug: "cosmic-travel-guide",
+    title: "Cosmic Travel Guide – Whitrion",
+    category: ["Worldbuilding", "Concept/Web", "Ai"],
+    role: ["World Architect", "Writer", "Designer"],
+    services: ["Worldbuilding", "Narrative Design"],
+    cover: "/cosmic-travel-guide.jpg",
+    summary: "Luxury travel guide to the Ultraviolet Multiverse: destinations, factions, tech, lore.",
+  },
+  {
+    slug: "ai-portfolio",
+    title: "Ai-Crafted Futures",
+    category: ["Ai", "Concept/Web", "Worldbuilding"],
+    role: ["Ai Artist", "Prompt Architect", "Creative Director"],
+    services: ["Ai Concepting", "Storyboard & Key Art", "Workshops"],
+    cover: "/ai-crafted-futures.jpg",
+    summary: "50,000+ assets—film posters, tech/auto viz, fashion, architecture, food, illustration, music.",
+  },
+]
