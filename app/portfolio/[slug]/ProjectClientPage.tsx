@@ -42,7 +42,7 @@ function ProjectContent({ project }: { project: any }) {
           subtext: "Coverage, notes, and rewrites with market-ready pacing.",
           href: "/contact",
         }
-      case "ai-crafted-futures":
+      case "ai-portfolio":
         return {
           button: "Explore look development",
           subtext: "Key art, storyboards, and fast variations: guided by human authorship.",
