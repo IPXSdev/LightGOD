@@ -15,7 +15,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const scrollToTop = () => {
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: "smooth" })
-    }, 100)
+    }, 150) // Updated scroll timing for better mobile compatibility
   }
 
   return (
@@ -65,6 +65,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <Link
             href={`/portfolio/${project.slug}`}
             onClick={scrollToTop}
+            prefetch={true}
             className="inline-flex items-center text-[#FF1A2D] hover:text-[#FF1A2D]/80 transition-colors"
           >
             View <ArrowRight className="ml-1 h-3 w-3" />
