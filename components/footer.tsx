@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Instagram, Mail } from "lucide-react"
+import { Mail } from "lucide-react"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -19,11 +19,8 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-black mb-4">Connect</h3>
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-black mb-4">Contact</h3>
             <div className="flex space-x-4">
-              <Link href="#" className="text-black hover:text-[#FF1A2D] transition-colors">
-                <Instagram className="h-5 w-5" />
-              </Link>
               <Link href="/contact" className="text-black hover:text-[#FF1A2D] transition-colors">
                 <Mail className="h-5 w-5" />
               </Link>
