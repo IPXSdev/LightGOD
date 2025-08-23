@@ -1,5 +1,4 @@
 "use client"
-import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
@@ -208,11 +207,6 @@ export default function ProjectClientPage(props: ProjectPageProps) {
 
   const project = PROJECTS.find((p) => p.slug === props.params.slug)
 
-  if (!project) {
-    console.log("[v0] Project not found, calling notFound()")
-    notFound()
-  }
-
-  console.log("[v0] Found project:", project.title)
-  return <ProjectContent project={project} />
+  console.log("[v0] Found project:", project?.title)
+  return <ProjectContent project={project!} />
 }
