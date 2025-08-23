@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { VideoGallery } from "@/components/video-gallery"
 import { NsfwGate } from "@/components/nsfw-gate"
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
 import { PROJECTS } from "@/data/projects"
 
 interface ProjectPageProps {
@@ -46,9 +46,9 @@ function ProjectContent({ project }: { project: any }) {
         {/* Back Button */}
         <div className="mb-8">
           <Button asChild variant="ghost" className="text-white/70 hover:text-white">
-            <Link href="/work">
+            <Link href="/portfolio">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Work
+              Back to Portfolio
             </Link>
           </Button>
         </div>
@@ -210,7 +210,7 @@ function ProjectContent({ project }: { project: any }) {
         <div className="flex justify-between items-center mt-16 pt-8 border-t border-white/10">
           {prevProject ? (
             <Button asChild variant="ghost" className="text-white/70 hover:text-white">
-              <Link href={`/work/${prevProject.slug}`}>
+              <Link href={`/portfolio/${prevProject.slug}`}>
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 {prevProject.title}
               </Link>
@@ -221,7 +221,7 @@ function ProjectContent({ project }: { project: any }) {
 
           {nextProject ? (
             <Button asChild variant="ghost" className="text-white/70 hover:text-white">
-              <Link href={`/work/${nextProject.slug}`}>
+              <Link href={`/portfolio/${nextProject.slug}`}>
                 {nextProject.title}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
