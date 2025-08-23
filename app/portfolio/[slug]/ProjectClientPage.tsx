@@ -19,7 +19,9 @@ function ProjectContent({ project }: { project: any }) {
   const nextProject = currentIndex < PROJECTS.length - 1 ? PROJECTS[currentIndex + 1] : null
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
   }
 
   const getProjectCTA = () => {
@@ -117,7 +119,7 @@ function ProjectContent({ project }: { project: any }) {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibent mb-4 text-white">SERVICES</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">SERVICES</h3>
             <div className="space-y-2">
               {project.services?.map((service: string) => (
                 <p key={service} className="text-white/70">
