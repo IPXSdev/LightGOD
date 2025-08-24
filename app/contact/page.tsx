@@ -12,7 +12,8 @@ import { CheckCircle, Copy } from "lucide-react"
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [copySuccess, setCopySuccess] = useState(false)
+  const [emailCopySuccess, setEmailCopySuccess] = useState(false)
+  const [inquiryCopySuccess, setInquiryCopySuccess] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -49,25 +50,35 @@ Sent from lightgod.fyi/contact`
     return `Inquiry: ${formData.projectType}`
   }
 
+  const isMobile = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  }
+
   const handleGmailCompose = () => {
     if (!isFormValid) return
 
     const subject = encodeURIComponent(buildEmailSubject())
     const body = encodeURIComponent(buildEmailBody())
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=ipxsdev@gmail.com&su=${subject}&body=${body}`
 
-    const newWindow = window.open(gmailUrl, "_blank")
-    if (!newWindow) {
-      window.location.href = gmailUrl
+    if (isMobile()) {
+      const mailtoUrl = `mailto:ipxsdev@gmail.com?subject=${subject}&body=${body}`
+      window.location.href = mailtoUrl
+    } else {
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=ipxsdev@gmail.com&su=${subject}&body=${body}`
+      const newWindow = window.open(gmailUrl, "_blank")
+      if (!newWindow) {
+        window.location.href = gmailUrl
+      }
     }
+
     setIsSubmitted(true)
   }
 
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText("ipxsdev@gmail.com")
-      setCopySuccess(true)
-      setTimeout(() => setCopySuccess(false), 2000)
+      setEmailCopySuccess(true)
+      setTimeout(() => setEmailCopySuccess(false), 2000)
     } catch (err) {
       console.error("Failed to copy email:", err)
     }
@@ -88,8 +99,8 @@ Message: ${formData.message}`
 
     try {
       await navigator.clipboard.writeText(questionnaire)
-      setCopySuccess(true)
-      setTimeout(() => setCopySuccess(false), 2000)
+      setInquiryCopySuccess(true)
+      setTimeout(() => setInquiryCopySuccess(false), 2000)
     } catch (err) {
       console.error("Failed to copy questionnaire:", err)
     }
@@ -345,7 +356,7 @@ Message: ${formData.message}`
                         aria-label="Copy email address to clipboard"
                       >
                         <Copy className="w-4 h-4 mr-2" />
-                        {copySuccess ? "Email Copied!" : "Copy my email"}
+                        {emailCopySuccess ? "Email Copied!" : "Copy my email"}
                       </Button>
 
                       <Button
@@ -356,7 +367,7 @@ Message: ${formData.message}`
                         aria-label="Copy inquiry data to clipboard"
                       >
                         <Copy className="w-4 h-4 mr-2" />
-                        Copy Inquiry
+                        {inquiryCopySuccess ? "Inquiry Copied!" : "Copy Inquiry"}
                       </Button>
                     </div>
 
