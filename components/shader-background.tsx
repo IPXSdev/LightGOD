@@ -7,7 +7,7 @@ interface ShaderBackgroundProps {
   children: React.ReactNode
 }
 
-export default function ShaderBackground({ children }: ShaderBackgroundProps) {
+export function ShaderBackground({ children }: ShaderBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -161,3 +161,5 @@ export default function ShaderBackground({ children }: ShaderBackgroundProps) {
     </div>
   )
 }
+
+export default ShaderBackground
