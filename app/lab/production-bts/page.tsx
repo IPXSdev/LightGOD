@@ -7,7 +7,6 @@ import { Camera, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { ImageIcon } from "lucide-react"
-import Image from "next/image"
 
 interface ProjectBatch {
   id: string
@@ -594,46 +593,18 @@ export default function ProductionBTSPage() {
 
           <Card className="bg-white border-gray-200 mt-8">
             <CardContent className="p-8">
-              <div className="flex items-center justify-between gap-8">
-                <div className="flex-shrink-0">
-                  <Link href="/lab/dynamics-multiverse" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-                    <div className="relative w-24 h-24 rounded-lg overflow-hidden group cursor-pointer">
-                      <Image
-                        src="/dynamics-multiverse-banner.png"
-                        alt="Dynamics Multiverse"
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </Link>
-                </div>
-
-                <div className="flex-1 text-center">
-                  <h3 className="font-heading text-xl font-bold text-black mb-2">Ready to Document Your Story?</h3>
-                  <p className="text-gray-600 mb-4">
-                    Let's capture the behind-the-scenes magic of your next production with professional BTS coverage
-                  </p>
-                  <Link
-                    href="/contact"
-                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    className="inline-flex items-center gap-2 bg-fuchsia-500 text-white px-6 py-3 rounded-lg hover:bg-fuchsia-600 transition-colors"
-                  >
-                    Get In Touch
-                  </Link>
-                </div>
-
-                <div className="flex-shrink-0">
-                  <Link href="/lab/look-development" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-                    <div className="relative w-24 h-24 rounded-lg overflow-hidden group cursor-pointer">
-                      <Image
-                        src="/look-dev-personal-statement.png"
-                        alt="Look Development Pipeline"
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </Link>
-                </div>
+              <div className="text-center">
+                <h3 className="font-heading text-xl font-bold text-black mb-2">Ready to Document Your Story?</h3>
+                <p className="text-gray-600 mb-4">
+                  Let's capture the behind-the-scenes magic of your next production with professional BTS coverage
+                </p>
+                <Link
+                  href="/contact"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="inline-flex items-center gap-2 bg-fuchsia-500 text-white px-6 py-3 rounded-lg hover:bg-fuchsia-600 transition-colors"
+                >
+                  Get In Touch
+                </Link>
               </div>
             </CardContent>
           </Card>

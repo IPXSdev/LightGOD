@@ -168,33 +168,18 @@ export default function WorldAtlasPage() {
 
           <Card className="bg-white border-gray-200 mt-8">
             <CardContent className="p-8">
-              <div className="flex items-center justify-center gap-8">
-                <div className="flex-shrink-0">
-                  <Link href="/lab/look-development" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-                    <div className="relative w-24 h-24 rounded-lg overflow-hidden group cursor-pointer">
-                      <Image
-                        src="/look-dev-personal-statement.png"
-                        alt="Look Development Pipeline"
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </Link>
-                </div>
-
-                <div className="flex-1 text-center">
-                  <h3 className="font-heading text-xl font-bold text-black mb-2">Need a Custom Multiverse Built?</h3>
-                  <p className="text-gray-600 mb-4">
-                    Let's create immersive worlds and interactive experiences that captivate your audience
-                  </p>
-                  <Link
-                    href="/contact"
-                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    className="inline-flex items-center gap-2 bg-fuchsia-500 text-white px-6 py-3 rounded-lg hover:bg-fuchsia-600 transition-colors"
-                  >
-                    Let's Build Together
-                  </Link>
-                </div>
+              <div className="text-center">
+                <h3 className="font-heading text-xl font-bold text-black mb-2">Need a Custom Multiverse Built?</h3>
+                <p className="text-gray-600 mb-4">
+                  Let's create immersive worlds and interactive experiences that captivate your audience
+                </p>
+                <Link
+                  href="/contact"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="inline-flex items-center gap-2 bg-fuchsia-500 text-white px-6 py-3 rounded-lg hover:bg-fuchsia-600 transition-colors"
+                >
+                  Let's Build Together
+                </Link>
               </div>
             </CardContent>
           </Card>
