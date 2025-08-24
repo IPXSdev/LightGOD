@@ -10,7 +10,7 @@ export const PROJECTS: Project[] = [
     category: ["Pitch Decks", "Writing"],
     role: ["Designer", "Copywriter", "Creative Strategist"],
     services: ["Pitch Deck Design", "Copywriting", "Story Consulting"],
-    cover: "/pitch-decks.png",
+    cover: "/images/pitch-decks-cover.png",
     summary: "Investor-ready decks across entertainment, culture, and tech.",
     media: [{ type: "pdf", caption: "Representative slides shown; full decks under NDA." }],
   },

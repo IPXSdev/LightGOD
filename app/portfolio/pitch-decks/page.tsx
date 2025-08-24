@@ -37,16 +37,6 @@ const pitchDeckImages = [
     alt: "Millennial Heist Synopsis",
     title: "Millennial Heist Synopsis",
   },
-  {
-    src: "/images/pitch-decks/generative-lore-deep-dive.png",
-    alt: "The Dynamics Multiverse - Generative Lore Deep Dive",
-    title: "Generative Lore Deep Dive",
-  },
-  {
-    src: "/images/pitch-decks/generative-lore.png",
-    alt: "The Dynamics Multiverse - Generative Lore",
-    title: "Generative Lore System",
-  },
 ]
 
 export default function PitchDecksPage() {
@@ -95,7 +85,7 @@ export default function PitchDecksPage() {
                   src={image.src || "/placeholder.svg"}
                   alt={image.alt}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">

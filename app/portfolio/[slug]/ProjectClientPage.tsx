@@ -4,9 +4,11 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { VideoGallery } from "@/components/video-gallery"
+import { VideoEmbed } from "@/components/video-embed"
 import { NsfwGate } from "@/components/nsfw-gate"
 import { ArrowLeft } from "lucide-react"
 import { PROJECTS } from "@/data/projects"
+import { VIDEOS } from "@/data/videos"
 
 interface ProjectPageProps {
   params: { slug: string }
@@ -88,6 +90,8 @@ function ProjectContent({ project }: { project: any }) {
   }
 
   const cta = getProjectCTA()
+
+  const gottaLoveKiraVideo = VIDEOS.find((video) => video.id === "gottalovekira")
 
   if (!project) {
     return (
@@ -188,41 +192,20 @@ function ProjectContent({ project }: { project: any }) {
             {project.featuredVideo && (
               <div className="mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-white">{project.featuredVideo.title}</h3>
-                <div className="bg-white/5 rounded-2xl p-6 mb-4">
-                  {project.featuredVideo.platform === "external" ? (
-                    <div className="flex items-center justify-center h-96 text-white">
-                      <div className="text-center">
-                        <div className="mb-6">
-                          <Image
-                            src="/images/screenwriting/gotta-love-kira-poster.png"
-                            alt="Gotta Love Kira Poster"
-                            width={200}
-                            height={300}
-                            className="mx-auto rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
-                            onClick={showGottaLoveKiraModal}
-                          />
-                        </div>
-                        <p className="mb-4 text-lg">This video opens on an external platform</p>
-                        <Button asChild className="bg-[#FF1A2D] hover:bg-[#FF1A2D]/80">
-                          <a href={project.featuredVideo.url} target="_blank" rel="noopener noreferrer">
-                            Open Video
-                          </a>
-                        </Button>
-                      </div>
-                    </div>
-                  ) : (
-                    <iframe
-                      src={project.featuredVideo.url}
-                      width="100%"
-                      height="400"
-                      frameBorder="0"
-                      allowFullScreen
-                      className="rounded-xl"
-                      title={project.featuredVideo.title}
+
+                {gottaLoveKiraVideo && (
+                  <div className="mb-6">
+                    <VideoEmbed
+                      video={{
+                        ...gottaLoveKiraVideo,
+                        thumbnail: "/images/screenwriting/gotta-love-kira-poster.png",
+                      }}
+                      featured={true}
                     />
-                  )}
-                </div>
-                <p className="text-white/70 text-sm">{project.featuredVideo.description}</p>
+                  </div>
+                )}
+
+                <p className="text-white/70 text-sm mb-6">{project.featuredVideo.description}</p>
 
                 <div className="mt-6">
                   <Image
@@ -252,8 +235,8 @@ function ProjectContent({ project }: { project: any }) {
                           if (e.target === modal) modal.remove()
                         }
                         modal.innerHTML = `
-                          <div class="relative max-w-4xl max-h-full">
-                            <button class="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl" onclick="this.closest('.fixed').remove()">×</button>
+                          <div class="relative max-w-6xl max-h-[95vh] w-full h-full flex items-center justify-center">
+                            <button class="absolute top-4 right-4 text-white hover:text-gray-300 text-3xl z-10" onclick="this.closest('.fixed').remove()">×</button>
                             <img src="${item.image}" alt="${item.title}" class="max-w-full max-h-full object-contain rounded-lg" />
                           </div>
                         `
@@ -266,7 +249,7 @@ function ProjectContent({ project }: { project: any }) {
                           alt={item.title}
                           width={400}
                           height={300}
-                          className="w-full h-48 object-cover"
+                          className="w-full h-48 object-cover object-top"
                         />
                         <div className="p-4">
                           <h4 className="font-semibold text-white mb-2">{item.title}</h4>
@@ -295,8 +278,8 @@ function ProjectContent({ project }: { project: any }) {
                           if (e.target === modal) modal.remove()
                         }
                         modal.innerHTML = `
-                          <div class="relative max-w-4xl max-h-full">
-                            <button class="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl" onclick="this.closest('.fixed').remove()">×</button>
+                          <div class="relative max-w-6xl max-h-[95vh] w-full h-full flex items-center justify-center">
+                            <button class="absolute top-4 right-4 text-white hover:text-gray-300 text-3xl z-10" onclick="this.closest('.fixed').remove()">×</button>
                             <img src="${item.image}" alt="${item.title}" class="max-w-full max-h-full object-contain rounded-lg" />
                           </div>
                         `
@@ -309,7 +292,7 @@ function ProjectContent({ project }: { project: any }) {
                           alt={item.title}
                           width={400}
                           height={300}
-                          className="w-full h-48 object-cover"
+                          className="w-full h-48 object-cover object-top"
                         />
                         <div className="p-4">
                           <h4 className="font-semibold text-white mb-2">{item.title}</h4>

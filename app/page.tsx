@@ -9,7 +9,12 @@ import { PROJECTS } from "@/data/projects"
 import { SERVICES } from "@/data/services"
 import Image from "next/image"
 
-const featuredProjects = PROJECTS.filter((p) => ["pitch-decks", "film-scripts", "video-gallery"].includes(p.slug))
+const featuredProjects = PROJECTS.filter((p) => ["video-gallery", "pitch-decks", "film-scripts"].includes(p.slug)).sort(
+  (a, b) => {
+    const order = ["video-gallery", "pitch-decks", "film-scripts"]
+    return order.indexOf(a.slug) - order.indexOf(b.slug)
+  },
+)
 
 const featuredServices = SERVICES.slice(0, 6)
 
