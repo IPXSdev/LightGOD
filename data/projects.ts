@@ -33,6 +33,46 @@ export const PROJECTS: Project[] = [
     cover: "/screenwriting-punchups.png",
     summary:
       "Features/pilots: Imani's Curse, Blockchain Bandits, The 3rd Mask, The Sitter, Through the Veil, Ghost Hustlers.",
+    featuredVideo: {
+      title: "Gotta Love Kira",
+      url: "https://fawesome.tv/movies/10647411/gotta-love-kira",
+      description:
+        "Director, Co-Writer, EP, Supervising Editor - A heartwarming father-daughter story exploring themes of self-discovery, honesty, and mental well-being during adolescence.",
+    },
+    scriptGallery: [
+      {
+        title: "Ghost Hustlers Poster",
+        image: "/images/screenwriting/ghost-hustlers-poster.png",
+        description: "Stylized poster for supernatural comedy about college students turned ghost hunters",
+      },
+      {
+        title: "Ghost Hustlers Synopsis",
+        image: "/images/screenwriting/ghost-hustlers-synopsis.png",
+        description: "Synopsis for paranormal comedy featuring the 'Paranormal Hustlers' crew",
+      },
+      {
+        title: "Ghost Hustlers Script",
+        image: "/images/screenwriting/ghost-hustlers-script.png",
+        description: "Script excerpt showing character dialogue and supernatural investigation setup",
+      },
+    ],
+    projectGallery: [
+      {
+        title: "Through the Veil Cover",
+        image: "/images/screenwriting/through-the-veil-cover.png",
+        description: "Supernatural thriller poster featuring mysterious entities and rural setting",
+      },
+      {
+        title: "Through the Veil Concept Art",
+        image: "/images/screenwriting/through-the-veil-concept.png",
+        description: "Concept design grid showcasing supernatural elements and character designs",
+      },
+      {
+        title: "Through the Veil Script Excerpt",
+        image: "/images/screenwriting/through-the-veil-excerpt.png",
+        description: "Script page showing tense dialogue and supernatural thriller atmosphere",
+      },
+    ],
   },
   {
     slug: "saturated-melanin",

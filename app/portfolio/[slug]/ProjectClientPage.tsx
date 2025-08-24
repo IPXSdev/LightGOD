@@ -23,6 +23,21 @@ function ProjectContent({ project }: { project: any }) {
     }
   }
 
+  const showGottaLoveKiraModal = () => {
+    const modal = document.createElement("div")
+    modal.className = "fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+    modal.onclick = (e) => {
+      if (e.target === modal) modal.remove()
+    }
+    modal.innerHTML = `
+      <div class="relative max-w-2xl max-h-full">
+        <button class="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl" onclick="this.closest('.fixed').remove()">×</button>
+        <img src="/images/screenwriting/gotta-love-kira-poster.png" alt="Gotta Love Kira Poster" class="max-w-full max-h-full object-contain rounded-lg" />
+      </div>
+    `
+    document.body.appendChild(modal)
+  }
+
   const getProjectCTA = () => {
     if (!project) return { button: "Start a Project", subtext: "Let's bring your vision to life.", href: "/contact" }
 
@@ -161,9 +176,151 @@ function ProjectContent({ project }: { project: any }) {
           </div>
         </div>
 
-        {(project.media || project.videoGallery) && (
+        {(project.media ||
+          project.videoGallery ||
+          project.featuredVideo ||
+          project.scriptGallery ||
+          project.projectGallery) && (
           <div className="mb-12">
             <h2 className="text-2xl font-bold mb-6 text-white">Media</h2>
+
+            {/* Featured Video */}
+            {project.featuredVideo && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-white">{project.featuredVideo.title}</h3>
+                <div className="bg-white/5 rounded-2xl p-6 mb-4">
+                  {project.featuredVideo.platform === "external" ? (
+                    <div className="flex items-center justify-center h-96 text-white">
+                      <div className="text-center">
+                        <div className="mb-6">
+                          <Image
+                            src="/images/screenwriting/gotta-love-kira-poster.png"
+                            alt="Gotta Love Kira Poster"
+                            width={200}
+                            height={300}
+                            className="mx-auto rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
+                            onClick={showGottaLoveKiraModal}
+                          />
+                        </div>
+                        <p className="mb-4 text-lg">This video opens on an external platform</p>
+                        <Button asChild className="bg-[#FF1A2D] hover:bg-[#FF1A2D]/80">
+                          <a href={project.featuredVideo.url} target="_blank" rel="noopener noreferrer">
+                            Open Video
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <iframe
+                      src={project.featuredVideo.url}
+                      width="100%"
+                      height="400"
+                      frameBorder="0"
+                      allowFullScreen
+                      className="rounded-xl"
+                      title={project.featuredVideo.title}
+                    />
+                  )}
+                </div>
+                <p className="text-white/70 text-sm">{project.featuredVideo.description}</p>
+
+                <div className="mt-6">
+                  <Image
+                    src="/images/screenwriting/gotta-love-kira-fawesome.png"
+                    alt="Gotta Love Kira on Fawesome"
+                    width={800}
+                    height={400}
+                    className="w-full rounded-xl"
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Script Gallery */}
+            {project.scriptGallery && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-white">Ghost Hustlers</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {project.scriptGallery.map((item: any, index: number) => (
+                    <div
+                      key={index}
+                      className="cursor-pointer group"
+                      onClick={() => {
+                        const modal = document.createElement("div")
+                        modal.className = "fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+                        modal.onclick = (e) => {
+                          if (e.target === modal) modal.remove()
+                        }
+                        modal.innerHTML = `
+                          <div class="relative max-w-4xl max-h-full">
+                            <button class="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl" onclick="this.closest('.fixed').remove()">×</button>
+                            <img src="${item.image}" alt="${item.title}" class="max-w-full max-h-full object-contain rounded-lg" />
+                          </div>
+                        `
+                        document.body.appendChild(modal)
+                      }}
+                    >
+                      <div className="bg-white/5 rounded-xl overflow-hidden hover:bg-white/10 transition-colors">
+                        <Image
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.title}
+                          width={400}
+                          height={300}
+                          className="w-full h-48 object-cover"
+                        />
+                        <div className="p-4">
+                          <h4 className="font-semibold text-white mb-2">{item.title}</h4>
+                          <p className="text-white/70 text-sm">{item.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Project Gallery */}
+            {project.projectGallery && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-white">Through the Veil</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {project.projectGallery.map((item: any, index: number) => (
+                    <div
+                      key={index}
+                      className="cursor-pointer group"
+                      onClick={() => {
+                        const modal = document.createElement("div")
+                        modal.className = "fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+                        modal.onclick = (e) => {
+                          if (e.target === modal) modal.remove()
+                        }
+                        modal.innerHTML = `
+                          <div class="relative max-w-4xl max-h-full">
+                            <button class="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl" onclick="this.closest('.fixed').remove()">×</button>
+                            <img src="${item.image}" alt="${item.title}" class="max-w-full max-h-full object-contain rounded-lg" />
+                          </div>
+                        `
+                        document.body.appendChild(modal)
+                      }}
+                    >
+                      <div className="bg-white/5 rounded-xl overflow-hidden hover:bg-white/10 transition-colors">
+                        <Image
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.title}
+                          width={400}
+                          height={300}
+                          className="w-full h-48 object-cover"
+                        />
+                        <div className="p-4">
+                          <h4 className="font-semibold text-white mb-2">{item.title}</h4>
+                          <p className="text-white/70 text-sm">{item.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Video Gallery */}
             {project.videoGallery && (
