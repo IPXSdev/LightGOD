@@ -21,7 +21,8 @@ export const PROJECTS: Project[] = [
     role: ["Director", "Producer", "Editor"],
     services: ["Direction", "Production", "Post"],
     cover: "/directed-produced.jpg",
-    summary: "Embedded selection incl. Gotta Love Kira, Blxst, Nitro, Peyton, WABP.",
+    summary:
+      "A curated selection of projects showcasing my multifaceted approach to filmmaking. I directed Gotta Love Kira as co-writer and executive producer, shot and edited music videos for Blxst and Nitro, and brought Peyton's vision to life through intimate storytelling.",
     videoGallery: VIDEOS,
   },
   {
@@ -88,24 +89,6 @@ export const PROJECTS: Project[] = [
     process: "Concept → set/lighting → poetry pairing → layout → gallery edit.",
     results: "Flagship personal project; exhibition-ready series.",
     media: [{ type: "pdf", caption: "Private preview available on request." }],
-  },
-  {
-    slug: "cosmic-travel-guide",
-    title: "Cosmic Travel Guide – Whitrion",
-    category: ["Worldbuilding", "Concept/Web", "Ai"],
-    role: ["World Architect", "Writer", "Designer"],
-    services: ["Worldbuilding", "Narrative Design"],
-    cover: "/cosmic-travel-guide.jpg",
-    summary: "Luxury travel guide to the Ultraviolet Multiverse: destinations, factions, tech, lore.",
-  },
-  {
-    slug: "ai-portfolio",
-    title: "Ai-Crafted Futures",
-    category: ["Ai", "Concept/Web", "Worldbuilding"],
-    role: ["Ai Artist", "Prompt Architect", "Creative Director"],
-    services: ["Ai Concepting", "Storyboard & Key Art", "Workshops"],
-    cover: "/ai-crafted-futures.jpg",
-    summary: "50,000+ assets—film posters, tech/auto viz, fashion, architecture, food, illustration, music.",
   },
 ]
 

@@ -131,7 +131,7 @@ function ProjectContent({ project }: { project: any }) {
               alt={project.title}
               width={800}
               height={400}
-              className="w-full h-64 md:h-96 object-cover rounded-2xl"
+              className="w-full h-64 md:h-96 object-cover object-top rounded-2xl"
             />
           </div>
         )}

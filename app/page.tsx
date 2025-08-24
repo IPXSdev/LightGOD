@@ -138,8 +138,8 @@ export default function HomePage() {
             {[
               { name: "Film Direction", icon: Film, href: "/portfolio/video-gallery" },
               { name: "Pitch Decks", icon: Tag, href: "/portfolio/pitch-decks" },
-              { name: "Creative Development", icon: Sparkles, href: "/portfolio/ai-portfolio" },
-              { name: "Worldbuilding", icon: Code, href: "/portfolio/cosmic-travel-guide" },
+              { name: "Creative Development", icon: Sparkles, href: "/lab/look-development" },
+              { name: "Worldbuilding", icon: Code, href: "/lab/world-atlas" },
             ].map((service, index) => (
               <motion.div
                 key={service.name}
