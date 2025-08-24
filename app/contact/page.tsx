@@ -27,7 +27,13 @@ export default function ContactPage() {
   })
 
   const isFormValid =
-    formData.name && formData.email && formData.contactNumber && formData.projectType && formData.message
+    formData.name &&
+    formData.email &&
+    formData.contactNumber &&
+    formData.projectType &&
+    formData.budget &&
+    formData.timeline &&
+    formData.message
 
   const buildEmailBody = () => {
     return `Hello LightGod,
@@ -218,7 +224,7 @@ Message: ${formData.message}`
                     </Label>
                     <Select onValueChange={(value) => handleInputChange("projectType", value)}>
                       <SelectTrigger className="bg-white border-gray-300 text-black">
-                        <SelectValue placeholder="Film, Pitch Decks, Worldbuilding" />
+                        <SelectValue placeholder="Click to choose" />
                       </SelectTrigger>
                       <SelectContent className="bg-white border-gray-300">
                         <SelectItem value="Film & Music Video Direction">Film & Music Video Direction</SelectItem>
@@ -235,7 +241,7 @@ Message: ${formData.message}`
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="budget" className="text-black">
-                        Budget Range
+                        Budget Range *
                       </Label>
                       <Select onValueChange={(value) => handleInputChange("budget", value)}>
                         <SelectTrigger className="bg-white border-gray-300 text-black">
@@ -253,7 +259,7 @@ Message: ${formData.message}`
                     </div>
                     <div>
                       <Label htmlFor="timeline" className="text-black">
-                        Timeline
+                        Timeline *
                       </Label>
                       <Select onValueChange={(value) => handleInputChange("timeline", value)}>
                         <SelectTrigger className="bg-white border-gray-300 text-black">
