@@ -230,14 +230,15 @@ function ProjectContent({ project }: { project: any }) {
                       className="cursor-pointer group"
                       onClick={() => {
                         const modal = document.createElement("div")
-                        modal.className = "fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+                        modal.className =
+                          "fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 cursor-pointer"
                         modal.onclick = (e) => {
                           if (e.target === modal) modal.remove()
                         }
                         modal.innerHTML = `
-                          <div class="relative max-w-6xl max-h-[95vh] w-full h-full flex items-center justify-center">
-                            <button class="absolute top-4 right-4 text-white hover:text-gray-300 text-3xl z-10" onclick="this.closest('.fixed').remove()">×</button>
-                            <img src="${item.image}" alt="${item.title}" class="max-w-full max-h-full object-contain rounded-lg" />
+                          <div class="relative max-w-6xl max-h-[95vh] w-full h-full flex items-center justify-center cursor-default" onclick="event.stopPropagation()">
+                            <button class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-10 w-12 h-12 flex items-center justify-center bg-black/50 rounded-full hover:bg-black/70 transition-colors" onclick="this.closest('.fixed').remove()">×</button>
+                            <img src="${item.image}" alt="${item.title}" class="max-w-full max-h-full object-contain rounded-lg cursor-default" />
                           </div>
                         `
                         document.body.appendChild(modal)
@@ -273,14 +274,15 @@ function ProjectContent({ project }: { project: any }) {
                       className="cursor-pointer group"
                       onClick={() => {
                         const modal = document.createElement("div")
-                        modal.className = "fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+                        modal.className =
+                          "fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 cursor-pointer"
                         modal.onclick = (e) => {
                           if (e.target === modal) modal.remove()
                         }
                         modal.innerHTML = `
-                          <div class="relative max-w-6xl max-h-[95vh] w-full h-full flex items-center justify-center">
-                            <button class="absolute top-4 right-4 text-white hover:text-gray-300 text-3xl z-10" onclick="this.closest('.fixed').remove()">×</button>
-                            <img src="${item.image}" alt="${item.title}" class="max-w-full max-h-full object-contain rounded-lg" />
+                          <div class="relative max-w-6xl max-h-[95vh] w-full h-full flex items-center justify-center cursor-default" onclick="event.stopPropagation()">
+                            <button class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-10 w-12 h-12 flex items-center justify-center bg-black/50 rounded-full hover:bg-black/70 transition-colors" onclick="this.closest('.fixed').remove()">×</button>
+                            <img src="${item.image}" alt="${item.title}" class="max-w-full max-h-full object-contain rounded-lg cursor-default" />
                           </div>
                         `
                         document.body.appendChild(modal)
