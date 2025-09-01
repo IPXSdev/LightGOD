@@ -21,16 +21,8 @@ const nextConfig = {
         destination: '/portfolio/:slug',
         permanent: true,
       },
-      {
-        source: '/portfolio/ai-crafted-futures',
-        destination: '/portfolio/crafted-futures',
-        permanent: true,
-      },
-      {
-        source: '/portfolio/saturated-melanin',
-        destination: '/shop/saturated-melanin-digital',
-        permanent: true,
-      },
+      // The redirect was pointing to /shop/saturated-melanin-digital which doesn't exist
+      // and was breaking the portfolio page functionality
     ]
   },
 }
