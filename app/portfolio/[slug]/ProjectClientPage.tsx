@@ -307,6 +307,66 @@ function ProjectContent({ project }: { project: any }) {
               </div>
             )}
 
+            {/* Saturated Melanin Gallery */}
+            {project.slug === "saturated-melanin" && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-white">Gallery</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    {
+                      image: "/images/saturated-melanin/book-cover.png",
+                      title: "Book Cover",
+                      description: "Main cover design featuring digital LED aesthetics",
+                    },
+                    {
+                      image: "/images/saturated-melanin/contents.png",
+                      title: "Contents",
+                      description: "Table of contents showing all 14 sections",
+                    },
+                    {
+                      image: "/images/saturated-melanin/electric-fairy.png",
+                      title: "The Electric Fairy",
+                      description: "UV photography with vibrant neon florals",
+                    },
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className="cursor-pointer group"
+                      onClick={() => {
+                        const modal = document.createElement("div")
+                        modal.className =
+                          "fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 cursor-pointer"
+                        modal.onclick = (e) => {
+                          if (e.target === modal) modal.remove()
+                        }
+                        modal.innerHTML = `
+                          <div class="relative max-w-6xl max-h-[95vh] w-full h-full flex items-center justify-center cursor-default" onclick="event.stopPropagation()">
+                            <button class="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl z-10 w-12 h-12 flex items-center justify-center bg-black/50 rounded-full hover:bg-black/70 transition-colors" onclick="this.closest('.fixed').remove()">×</button>
+                            <img src="${item.image}" alt="${item.title}" class="max-w-full max-h-full object-contain rounded-lg cursor-default" />
+                          </div>
+                        `
+                        document.body.appendChild(modal)
+                      }}
+                    >
+                      <div className="bg-white/5 rounded-xl overflow-hidden hover:bg-white/10 transition-colors">
+                        <Image
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.title}
+                          width={400}
+                          height={300}
+                          className="w-full h-48 object-cover object-top"
+                        />
+                        <div className="p-4">
+                          <h4 className="font-semibold text-white mb-2">{item.title}</h4>
+                          <p className="text-white/70 text-sm">{item.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Video Gallery */}
             {project.videoGallery && (
               <div className="mb-8">
