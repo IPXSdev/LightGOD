@@ -153,45 +153,45 @@ export default function NewPitchDecksPage() {
           onClick={closeModal}
         >
           <div
-            className="relative max-w-[98vw] max-h-[98vh] w-full flex flex-col items-center"
+            className="relative max-w-[98vw] max-h-[90vh] w-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Image Display */}
-            <div className="relative w-full flex-1 flex items-center justify-center mb-6">
-              {!imageErrors.has(selectedImage) ? (
-                <Image
-                  src={DECK_IMAGES[selectedImage].src || "/placeholder.svg"}
-                  alt={DECK_IMAGES[selectedImage].alt}
-                  width={1920}
-                  height={1200}
-                  className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
-                  priority
-                  onError={() => handleImageError(selectedImage)}
-                />
-              ) : (
-                <div className="bg-gradient-to-br from-red-900/60 via-purple-900/60 to-blue-900/60 backdrop-blur-lg rounded-2xl p-16 text-center max-w-lg">
-                  <div className="text-9xl mb-8">🎬</div>
-                  <h3 className="text-3xl font-bold mb-6 text-white">{DECK_IMAGES[selectedImage].title}</h3>
-                  <p className="text-white/90 text-xl leading-relaxed">{DECK_IMAGES[selectedImage].description}</p>
-                </div>
-              )}
-            </div>
+            {!imageErrors.has(selectedImage) ? (
+              <Image
+                src={DECK_IMAGES[selectedImage].src || "/placeholder.svg"}
+                alt={DECK_IMAGES[selectedImage].alt}
+                width={1920}
+                height={1200}
+                className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+                priority
+                onError={() => handleImageError(selectedImage)}
+              />
+            ) : (
+              <div className="bg-gradient-to-br from-red-900/60 via-purple-900/60 to-blue-900/60 backdrop-blur-lg rounded-2xl p-16 text-center max-w-lg">
+                <div className="text-9xl mb-8">🎬</div>
+                <h3 className="text-3xl font-bold mb-6 text-white">{DECK_IMAGES[selectedImage].title}</h3>
+                <p className="text-white/90 text-xl leading-relaxed">{DECK_IMAGES[selectedImage].description}</p>
+              </div>
+            )}
+          </div>
 
-            {/* Navigation Controls */}
-            <div className="flex items-center justify-center gap-4 bg-black/90 rounded-full px-6 py-4 border-2 border-white/30 backdrop-blur-sm">
+          {/* Navigation Controls - Fixed at Bottom */}
+          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-60">
+            <div className="flex items-center justify-center gap-3 bg-white/90 backdrop-blur-md rounded-full px-6 py-2 shadow-lg border border-gray-200/50">
               {/* Previous Button */}
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-white hover:text-black hover:bg-white/90 w-12 h-12 rounded-full transition-all duration-200"
+                className="text-black hover:text-white hover:bg-black w-10 h-10 rounded-full transition-all duration-200 text-lg font-bold"
                 onClick={prevImage}
               >
-                <span className="text-2xl font-bold">‹</span>
+                ‹
               </Button>
 
               {/* Page Counter */}
-              <div className="px-4">
-                <p className="text-white font-bold text-lg whitespace-nowrap">
+              <div className="px-3">
+                <p className="text-black font-semibold text-sm whitespace-nowrap">
                   {selectedImage + 1} of {DECK_IMAGES.length}
                 </p>
               </div>
@@ -200,21 +200,23 @@ export default function NewPitchDecksPage() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-white hover:text-black hover:bg-white/90 w-12 h-12 rounded-full transition-all duration-200"
+                className="text-black hover:text-white hover:bg-black w-10 h-10 rounded-full transition-all duration-200 text-lg font-bold"
                 onClick={nextImage}
               >
-                <span className="text-2xl font-bold">›</span>
+                ›
               </Button>
 
+              {/* Divider */}
+              <div className="w-px h-6 bg-gray-300 mx-1"></div>
+
               {/* Close Button */}
-              <div className="w-px h-8 bg-white/30 mx-2"></div>
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-white hover:text-black hover:bg-white/90 w-12 h-12 rounded-full transition-all duration-200"
+                className="text-black hover:text-white hover:bg-black w-10 h-10 rounded-full transition-all duration-200 text-lg font-bold"
                 onClick={closeModal}
               >
-                <span className="text-xl font-bold">×</span>
+                ×
               </Button>
             </div>
           </div>
