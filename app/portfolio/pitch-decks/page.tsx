@@ -4,10 +4,10 @@ import { useState } from "react"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { X } from "lucide-react"
+import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
-// Updated: 2025-08-24 - Pitch deck gallery with 6 images
-const pitchDeckImages = [
+// DEPLOYMENT FORCE UPDATE: 2025-08-24T23:00:00Z
+const PITCH_DECK_GALLERY = [
   {
     src: "/images/pitch-decks/the-sitter-cover.png",
     alt: "The Sitter Cover Page",
@@ -46,148 +46,166 @@ const pitchDeckImages = [
   },
 ]
 
-export default function PitchDecksPage() {
-  console.log("[v0] Pitch Decks Gallery - Updated 2025-08-24")
+export default function PitchDecksGalleryPage() {
+  console.log("[v0] FORCE DEPLOYMENT - Pitch Decks Gallery - 2025-08-24T23:00:00Z")
+  console.log("[v0] Gallery images count:", PITCH_DECK_GALLERY.length)
 
-  const [selectedImage, setSelectedImage] = useState<number | null>(null)
-  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set())
+  const [activeModal, setActiveModal] = useState<number | null>(null)
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set())
 
-  const openModal = (index: number) => {
-    setSelectedImage(index)
+  const openImageModal = (index: number) => {
+    console.log("[v0] Opening modal for image:", index)
+    setActiveModal(index)
   }
 
-  const closeModal = () => {
-    setSelectedImage(null)
+  const closeImageModal = () => {
+    console.log("[v0] Closing modal")
+    setActiveModal(null)
   }
 
-  const nextImage = () => {
-    if (selectedImage !== null) {
-      setSelectedImage((selectedImage + 1) % pitchDeckImages.length)
+  const navigateNext = () => {
+    if (activeModal !== null) {
+      const nextIndex = (activeModal + 1) % PITCH_DECK_GALLERY.length
+      console.log("[v0] Navigate to next image:", nextIndex)
+      setActiveModal(nextIndex)
     }
   }
 
-  const prevImage = () => {
-    if (selectedImage !== null) {
-      setSelectedImage(selectedImage === 0 ? pitchDeckImages.length - 1 : selectedImage - 1)
+  const navigatePrev = () => {
+    if (activeModal !== null) {
+      const prevIndex = activeModal === 0 ? PITCH_DECK_GALLERY.length - 1 : activeModal - 1
+      console.log("[v0] Navigate to previous image:", prevIndex)
+      setActiveModal(prevIndex)
     }
   }
 
-  const handleImageError = (index: number) => {
-    setImageErrors((prev) => new Set(prev).add(index))
+  const handleImageLoadError = (index: number) => {
+    console.log("[v0] Image failed to load:", index)
+    setFailedImages((prev) => new Set(prev).add(index))
   }
 
   return (
-    <div className="py-20">
+    <main className="min-h-screen py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Pitch Decks</h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+        <header className="text-center mb-12">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            Pitch Decks
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Investor-ready decks across entertainment, culture, and tech. Each presentation crafted to move minds and
             open doors.
           </p>
-        </div>
+        </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {pitchDeckImages.map((image, index) => (
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+          {PITCH_DECK_GALLERY.map((deckImage, index) => (
             <Card
-              key={index}
-              className="group cursor-pointer overflow-hidden bg-background/80 backdrop-blur-sm border-border/50 hover:border-border transition-all duration-300 hover:scale-[1.02]"
-              onClick={() => openModal(index)}
+              key={`pitch-deck-${index}`}
+              className="group cursor-pointer overflow-hidden bg-card/90 backdrop-blur-md border-2 border-border/30 hover:border-purple-500/50 transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl"
+              onClick={() => openImageModal(index)}
             >
-              <div className="aspect-video relative">
-                {!imageErrors.has(index) ? (
+              <div className="aspect-[16/10] relative overflow-hidden">
+                {!failedImages.has(index) ? (
                   <Image
-                    src={image.src || "/placeholder.svg"}
-                    alt={image.alt}
+                    src={deckImage.src || "/placeholder.svg"}
+                    alt={deckImage.alt}
                     fill
-                    className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover object-top transition-all duration-500 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    onError={() => handleImageError(index)}
-                    priority={index < 2}
+                    onError={() => handleImageLoadError(index)}
+                    priority={index < 4}
                   />
                 ) : (
-                  <div className="w-full h-full bg-muted flex items-center justify-center">
-                    <div className="text-center p-4">
-                      <div className="text-4xl mb-2">📄</div>
-                      <p className="text-sm text-muted-foreground">{image.title}</p>
+                  <div className="w-full h-full bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 flex items-center justify-center">
+                    <div className="text-center p-6">
+                      <div className="text-6xl mb-4">🎯</div>
+                      <p className="text-lg font-semibold">{deckImage.title}</p>
+                      <p className="text-sm text-muted-foreground mt-2">Loading...</p>
                     </div>
                   </div>
                 )}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2">
-                      <p className="text-sm font-medium text-black">Click to view</p>
-                    </div>
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-6">
+                  <div className="bg-white/95 dark:bg-black/95 backdrop-blur-sm rounded-full px-6 py-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <p className="text-sm font-bold text-foreground">View Full Deck</p>
                   </div>
                 </div>
               </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-lg mb-2">{image.title}</h3>
-                <p className="text-sm text-muted-foreground">{image.description}</p>
+
+              <div className="p-6">
+                <h3 className="font-bold text-xl mb-3 text-foreground">{deckImage.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{deckImage.description}</p>
               </div>
             </Card>
           ))}
-        </div>
+        </section>
       </div>
 
-      {selectedImage !== null && (
+      {activeModal !== null && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={closeModal}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-4"
+          onClick={closeImageModal}
         >
-          <div className="relative max-w-7xl max-h-[90vh] w-full" onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-w-[95vw] max-h-[95vh] w-full" onClick={(e) => e.stopPropagation()}>
+            {/* Close button */}
             <Button
               variant="ghost"
               size="icon"
-              className="absolute -top-12 right-0 text-white hover:bg-white/20 z-10"
-              onClick={closeModal}
+              className="absolute -top-16 right-0 text-white hover:bg-white/20 w-12 h-12 rounded-full"
+              onClick={closeImageModal}
             >
-              <X className="h-6 w-6" />
+              <X className="h-8 w-8" />
+            </Button>
+
+            {/* Navigation buttons */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-12 h-12 rounded-full z-10"
+              onClick={navigatePrev}
+            >
+              <ChevronLeft className="h-8 w-8" />
             </Button>
 
             <Button
               variant="ghost"
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 z-10"
-              onClick={prevImage}
+              size="icon"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-12 h-12 rounded-full z-10"
+              onClick={navigateNext}
             >
-              ←
-            </Button>
-            <Button
-              variant="ghost"
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 z-10"
-              onClick={nextImage}
-            >
-              →
+              <ChevronRight className="h-8 w-8" />
             </Button>
 
+            {/* Image container */}
             <div className="relative w-full h-full flex items-center justify-center">
-              {!imageErrors.has(selectedImage) ? (
+              {!failedImages.has(activeModal) ? (
                 <Image
-                  src={pitchDeckImages[selectedImage].src || "/placeholder.svg"}
-                  alt={pitchDeckImages[selectedImage].alt}
+                  src={PITCH_DECK_GALLERY[activeModal].src || "/placeholder.svg"}
+                  alt={PITCH_DECK_GALLERY[activeModal].alt}
                   width={1920}
-                  height={1080}
-                  className="max-w-full max-h-full object-contain"
+                  height={1200}
+                  className="max-w-full max-h-full object-contain rounded-lg"
                   priority
-                  onError={() => handleImageError(selectedImage)}
+                  onError={() => handleImageLoadError(activeModal)}
                 />
               ) : (
-                <div className="bg-muted rounded-lg p-8 text-center">
-                  <div className="text-6xl mb-4">📄</div>
-                  <h3 className="text-xl font-semibold mb-2">{pitchDeckImages[selectedImage].title}</h3>
-                  <p className="text-muted-foreground">{pitchDeckImages[selectedImage].description}</p>
+                <div className="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-sm rounded-xl p-12 text-center max-w-md">
+                  <div className="text-8xl mb-6">🎯</div>
+                  <h3 className="text-2xl font-bold mb-4 text-white">{PITCH_DECK_GALLERY[activeModal].title}</h3>
+                  <p className="text-white/80 text-lg">{PITCH_DECK_GALLERY[activeModal].description}</p>
                 </div>
               )}
             </div>
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1">
-              <p className="text-white text-sm">
-                {selectedImage + 1} of {pitchDeckImages.length}
+            {/* Image counter */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm rounded-full px-4 py-2">
+              <p className="text-white font-medium">
+                {activeModal + 1} of {PITCH_DECK_GALLERY.length}
               </p>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </main>
   )
 }
