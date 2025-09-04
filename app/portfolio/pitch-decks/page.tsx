@@ -6,8 +6,8 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
-// DEPLOYMENT FORCE UPDATE: 2025-08-24T23:00:00Z
-const PITCH_DECK_GALLERY = [
+// FORCE NEW DEPLOYMENT: 2025-08-24T23:30:00Z - COMPLETE REBUILD
+const DECK_IMAGES = [
   {
     src: "/images/pitch-decks/the-sitter-cover.png",
     alt: "The Sitter Cover Page",
@@ -46,166 +46,173 @@ const PITCH_DECK_GALLERY = [
   },
 ]
 
-export default function PitchDecksGalleryPage() {
-  console.log("[v0] FORCE DEPLOYMENT - Pitch Decks Gallery - 2025-08-24T23:00:00Z")
-  console.log("[v0] Gallery images count:", PITCH_DECK_GALLERY.length)
+export default function NewPitchDecksPage() {
+  console.log("[v0] NEW PITCH DECKS PAGE LOADED - FORCE DEPLOYMENT")
+  console.log("[v0] Total deck images:", DECK_IMAGES.length)
 
-  const [activeModal, setActiveModal] = useState<number | null>(null)
-  const [failedImages, setFailedImages] = useState<Set<number>>(new Set())
+  const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set())
 
-  const openImageModal = (index: number) => {
-    console.log("[v0] Opening modal for image:", index)
-    setActiveModal(index)
+  const openModal = (index: number) => {
+    console.log("[v0] Opening modal for deck:", index)
+    setSelectedImage(index)
   }
 
-  const closeImageModal = () => {
+  const closeModal = () => {
     console.log("[v0] Closing modal")
-    setActiveModal(null)
+    setSelectedImage(null)
   }
 
-  const navigateNext = () => {
-    if (activeModal !== null) {
-      const nextIndex = (activeModal + 1) % PITCH_DECK_GALLERY.length
-      console.log("[v0] Navigate to next image:", nextIndex)
-      setActiveModal(nextIndex)
+  const nextImage = () => {
+    if (selectedImage !== null) {
+      const next = (selectedImage + 1) % DECK_IMAGES.length
+      console.log("[v0] Next image:", next)
+      setSelectedImage(next)
     }
   }
 
-  const navigatePrev = () => {
-    if (activeModal !== null) {
-      const prevIndex = activeModal === 0 ? PITCH_DECK_GALLERY.length - 1 : activeModal - 1
-      console.log("[v0] Navigate to previous image:", prevIndex)
-      setActiveModal(prevIndex)
+  const prevImage = () => {
+    if (selectedImage !== null) {
+      const prev = selectedImage === 0 ? DECK_IMAGES.length - 1 : selectedImage - 1
+      console.log("[v0] Previous image:", prev)
+      setSelectedImage(prev)
     }
   }
 
-  const handleImageLoadError = (index: number) => {
-    console.log("[v0] Image failed to load:", index)
-    setFailedImages((prev) => new Set(prev).add(index))
+  const handleImageError = (index: number) => {
+    console.log("[v0] Image error for index:", index)
+    setImageErrors((prev) => new Set(prev).add(index))
   }
 
   return (
-    <main className="min-h-screen py-20">
+    <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
-        <header className="text-center mb-12">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            Pitch Decks
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-red-500 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+            PITCH DECKS
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Investor-ready decks across entertainment, culture, and tech. Each presentation crafted to move minds and
-            open doors.
+            Investor-ready presentations across entertainment, culture, and technology. Each deck crafted to captivate
+            minds and unlock opportunities.
           </p>
-        </header>
+        </div>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {PITCH_DECK_GALLERY.map((deckImage, index) => (
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
+          {DECK_IMAGES.map((deck, index) => (
             <Card
-              key={`pitch-deck-${index}`}
-              className="group cursor-pointer overflow-hidden bg-card/90 backdrop-blur-md border-2 border-border/30 hover:border-purple-500/50 transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl"
-              onClick={() => openImageModal(index)}
+              key={`deck-${index}-${deck.title.replace(/\s+/g, "-").toLowerCase()}`}
+              className="group cursor-pointer overflow-hidden bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl border-2 border-border/40 hover:border-red-500/60 transition-all duration-700 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20"
+              onClick={() => openModal(index)}
             >
               <div className="aspect-[16/10] relative overflow-hidden">
-                {!failedImages.has(index) ? (
+                {!imageErrors.has(index) ? (
                   <Image
-                    src={deckImage.src || "/placeholder.svg"}
-                    alt={deckImage.alt}
+                    src={deck.src || "/placeholder.svg"}
+                    alt={deck.alt}
                     fill
-                    className="object-cover object-top transition-all duration-500 group-hover:scale-110"
+                    className="object-cover object-top transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    onError={() => handleImageLoadError(index)}
+                    onError={() => handleImageError(index)}
                     priority={index < 4}
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 flex items-center justify-center">
-                    <div className="text-center p-6">
-                      <div className="text-6xl mb-4">🎯</div>
-                      <p className="text-lg font-semibold">{deckImage.title}</p>
-                      <p className="text-sm text-muted-foreground mt-2">Loading...</p>
+                  <div className="w-full h-full bg-gradient-to-br from-red-100 via-purple-100 to-blue-100 dark:from-red-900/30 dark:to-blue-900/30 flex items-center justify-center">
+                    <div className="text-center p-8">
+                      <div className="text-8xl mb-6">🎬</div>
+                      <h3 className="text-xl font-bold mb-2">{deck.title}</h3>
+                      <p className="text-sm text-muted-foreground">Deck Loading...</p>
                     </div>
                   </div>
                 )}
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-6">
-                  <div className="bg-white/95 dark:bg-black/95 backdrop-blur-sm rounded-full px-6 py-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-sm font-bold text-foreground">View Full Deck</p>
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-end justify-center pb-8">
+                  <div className="bg-white/95 dark:bg-black/95 backdrop-blur-md rounded-full px-8 py-4 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700">
+                    <p className="text-sm font-bold text-foreground">VIEW FULL DECK</p>
                   </div>
                 </div>
               </div>
 
-              <div className="p-6">
-                <h3 className="font-bold text-xl mb-3 text-foreground">{deckImage.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{deckImage.description}</p>
+              {/* Card Content */}
+              <div className="p-8">
+                <h3 className="font-black text-2xl mb-4 text-foreground group-hover:text-red-600 transition-colors duration-300">
+                  {deck.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-lg">{deck.description}</p>
               </div>
             </Card>
           ))}
-        </section>
+        </div>
       </div>
 
-      {activeModal !== null && (
+      {/* Modal */}
+      {selectedImage !== null && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-4"
-          onClick={closeImageModal}
+          className="fixed inset-0 z-50 bg-black/98 backdrop-blur-xl flex items-center justify-center p-4"
+          onClick={closeModal}
         >
-          <div className="relative max-w-[95vw] max-h-[95vh] w-full" onClick={(e) => e.stopPropagation()}>
-            {/* Close button */}
+          <div className="relative max-w-[98vw] max-h-[98vh] w-full" onClick={(e) => e.stopPropagation()}>
+            {/* Close Button */}
             <Button
               variant="ghost"
               size="icon"
-              className="absolute -top-16 right-0 text-white hover:bg-white/20 w-12 h-12 rounded-full"
-              onClick={closeImageModal}
+              className="absolute -top-20 right-0 text-white hover:bg-white/20 w-16 h-16 rounded-full border-2 border-white/20"
+              onClick={closeModal}
             >
-              <X className="h-8 w-8" />
+              <X className="h-10 w-10" />
             </Button>
 
-            {/* Navigation buttons */}
+            {/* Navigation */}
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-12 h-12 rounded-full z-10"
-              onClick={navigatePrev}
+              className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-16 h-16 rounded-full border-2 border-white/20 z-10"
+              onClick={prevImage}
             >
-              <ChevronLeft className="h-8 w-8" />
+              <ChevronLeft className="h-10 w-10" />
             </Button>
 
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-12 h-12 rounded-full z-10"
-              onClick={navigateNext}
+              className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-16 h-16 rounded-full border-2 border-white/20 z-10"
+              onClick={nextImage}
             >
-              <ChevronRight className="h-8 w-8" />
+              <ChevronRight className="h-10 w-10" />
             </Button>
 
-            {/* Image container */}
+            {/* Image Display */}
             <div className="relative w-full h-full flex items-center justify-center">
-              {!failedImages.has(activeModal) ? (
+              {!imageErrors.has(selectedImage) ? (
                 <Image
-                  src={PITCH_DECK_GALLERY[activeModal].src || "/placeholder.svg"}
-                  alt={PITCH_DECK_GALLERY[activeModal].alt}
+                  src={DECK_IMAGES[selectedImage].src || "/placeholder.svg"}
+                  alt={DECK_IMAGES[selectedImage].alt}
                   width={1920}
                   height={1200}
-                  className="max-w-full max-h-full object-contain rounded-lg"
+                  className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
                   priority
-                  onError={() => handleImageLoadError(activeModal)}
+                  onError={() => handleImageError(selectedImage)}
                 />
               ) : (
-                <div className="bg-gradient-to-br from-purple-900/50 to-blue-900/50 backdrop-blur-sm rounded-xl p-12 text-center max-w-md">
-                  <div className="text-8xl mb-6">🎯</div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">{PITCH_DECK_GALLERY[activeModal].title}</h3>
-                  <p className="text-white/80 text-lg">{PITCH_DECK_GALLERY[activeModal].description}</p>
+                <div className="bg-gradient-to-br from-red-900/60 via-purple-900/60 to-blue-900/60 backdrop-blur-lg rounded-2xl p-16 text-center max-w-lg">
+                  <div className="text-9xl mb-8">🎬</div>
+                  <h3 className="text-3xl font-bold mb-6 text-white">{DECK_IMAGES[selectedImage].title}</h3>
+                  <p className="text-white/90 text-xl leading-relaxed">{DECK_IMAGES[selectedImage].description}</p>
                 </div>
               )}
             </div>
 
-            {/* Image counter */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm rounded-full px-4 py-2">
-              <p className="text-white font-medium">
-                {activeModal + 1} of {PITCH_DECK_GALLERY.length}
+            {/* Counter */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-md rounded-full px-6 py-3 border border-white/20">
+              <p className="text-white font-bold text-lg">
+                {selectedImage + 1} / {DECK_IMAGES.length}
               </p>
             </div>
           </div>
         </div>
       )}
-    </main>
+    </div>
   )
 }
