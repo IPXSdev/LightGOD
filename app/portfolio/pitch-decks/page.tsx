@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { X } from "lucide-react"
 
+// Updated: 2025-08-24 - Pitch deck gallery with 6 images
 const pitchDeckImages = [
   {
     src: "/images/pitch-decks/the-sitter-cover.png",
@@ -46,6 +47,8 @@ const pitchDeckImages = [
 ]
 
 export default function PitchDecksPage() {
+  console.log("[v0] Pitch Decks Gallery - Updated 2025-08-24")
+
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set())
 
