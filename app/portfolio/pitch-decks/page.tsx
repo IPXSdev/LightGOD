@@ -152,38 +152,12 @@ export default function NewPitchDecksPage() {
           className="fixed inset-0 z-50 bg-black/98 backdrop-blur-xl flex items-center justify-center p-4"
           onClick={closeModal}
         >
-          <div className="relative max-w-[98vw] max-h-[98vh] w-full" onClick={(e) => e.stopPropagation()}>
-            {/* Close Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute -top-20 right-0 text-white hover:bg-white/20 w-16 h-16 rounded-full border-2 border-white/20"
-              onClick={closeModal}
-            >
-              <span className="text-2xl font-bold">×</span>
-            </Button>
-
-            {/* Navigation */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-16 h-16 rounded-full border-2 border-white/20 z-10"
-              onClick={prevImage}
-            >
-              <span className="text-3xl font-bold">‹</span>
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-16 h-16 rounded-full border-2 border-white/20 z-10"
-              onClick={nextImage}
-            >
-              <span className="text-3xl font-bold">›</span>
-            </Button>
-
+          <div
+            className="relative max-w-[98vw] max-h-[98vh] w-full flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Image Display */}
-            <div className="relative w-full h-full flex items-center justify-center">
+            <div className="relative w-full flex-1 flex items-center justify-center mb-6">
               {!imageErrors.has(selectedImage) ? (
                 <Image
                   src={DECK_IMAGES[selectedImage].src || "/placeholder.svg"}
@@ -203,11 +177,45 @@ export default function NewPitchDecksPage() {
               )}
             </div>
 
-            {/* Counter */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-md rounded-full px-6 py-3 border border-white/20">
-              <p className="text-white font-bold text-lg">
-                {selectedImage + 1} / {DECK_IMAGES.length}
-              </p>
+            {/* Navigation Controls */}
+            <div className="flex items-center justify-center gap-4 bg-black/90 rounded-full px-6 py-4 border-2 border-white/30 backdrop-blur-sm">
+              {/* Previous Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white hover:text-black hover:bg-white/90 w-12 h-12 rounded-full transition-all duration-200"
+                onClick={prevImage}
+              >
+                <span className="text-2xl font-bold">‹</span>
+              </Button>
+
+              {/* Page Counter */}
+              <div className="px-4">
+                <p className="text-white font-bold text-lg whitespace-nowrap">
+                  {selectedImage + 1} of {DECK_IMAGES.length}
+                </p>
+              </div>
+
+              {/* Next Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white hover:text-black hover:bg-white/90 w-12 h-12 rounded-full transition-all duration-200"
+                onClick={nextImage}
+              >
+                <span className="text-2xl font-bold">›</span>
+              </Button>
+
+              {/* Close Button */}
+              <div className="w-px h-8 bg-white/30 mx-2"></div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white hover:text-black hover:bg-white/90 w-12 h-12 rounded-full transition-all duration-200"
+                onClick={closeModal}
+              >
+                <span className="text-xl font-bold">×</span>
+              </Button>
             </div>
           </div>
         </div>
