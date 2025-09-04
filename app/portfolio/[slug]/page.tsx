@@ -11,7 +11,7 @@ export const dynamicParams = false
 
 export async function generateStaticParams() {
   console.log("[v0] generateStaticParams called")
-  const staticParams = PROJECTS.map((p) => ({ slug: p.slug }))
+  const staticParams = PROJECTS.filter((p) => p.slug !== "pitch-decks").map((p) => ({ slug: p.slug }))
   console.log("[v0] Generated static params:", staticParams)
   return staticParams
 }

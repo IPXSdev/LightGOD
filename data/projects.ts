@@ -5,6 +5,19 @@ console.log("[v0] Loading projects data...")
 
 export const PROJECTS: Project[] = [
   {
+    slug: "pitch-decks",
+    title: "Pitch Decks - Client Portfolio",
+    category: ["Pitch Decks", "Writing"],
+    role: ["Creative Director", "Writer", "Designer"],
+    services: ["Pitch Development", "Visual Design", "Storytelling"],
+    cover: "/images/pitch-decks-cover.png",
+    summary:
+      "Investor-ready decks across entertainment, culture, and tech. Each presentation crafted to move minds and open doors.",
+    brief: "Strategic pitch development combining compelling narratives with striking visual design.",
+    process: "Concept → research → narrative structure → visual design → client refinement.",
+    results: "Successfully funded projects across film, tech, and entertainment sectors.",
+  },
+  {
     slug: "video-gallery",
     title: "Directed & Produced – Watch",
     category: ["Filmmaking", "Music Video"],

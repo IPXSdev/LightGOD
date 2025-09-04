@@ -4,9 +4,8 @@ import { useState } from "react"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
-// FORCE NEW DEPLOYMENT: 2025-08-24T23:30:00Z - COMPLETE REBUILD
+// FORCE NEW DEPLOYMENT: 2025-08-24T23:45:00Z - FIXED IMPORT ERROR
 const DECK_IMAGES = [
   {
     src: "/images/pitch-decks/the-sitter-cover.png",
@@ -47,7 +46,7 @@ const DECK_IMAGES = [
 ]
 
 export default function NewPitchDecksPage() {
-  console.log("[v0] NEW PITCH DECKS PAGE LOADED - FORCE DEPLOYMENT")
+  console.log("[v0] NEW PITCH DECKS PAGE LOADED - IMPORT ERROR FIXED")
   console.log("[v0] Total deck images:", DECK_IMAGES.length)
 
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
@@ -161,7 +160,7 @@ export default function NewPitchDecksPage() {
               className="absolute -top-20 right-0 text-white hover:bg-white/20 w-16 h-16 rounded-full border-2 border-white/20"
               onClick={closeModal}
             >
-              <X className="h-10 w-10" />
+              <span className="text-2xl font-bold">×</span>
             </Button>
 
             {/* Navigation */}
@@ -171,7 +170,7 @@ export default function NewPitchDecksPage() {
               className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-16 h-16 rounded-full border-2 border-white/20 z-10"
               onClick={prevImage}
             >
-              <ChevronLeft className="h-10 w-10" />
+              <span className="text-3xl font-bold">‹</span>
             </Button>
 
             <Button
@@ -180,7 +179,7 @@ export default function NewPitchDecksPage() {
               className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-16 h-16 rounded-full border-2 border-white/20 z-10"
               onClick={nextImage}
             >
-              <ChevronRight className="h-10 w-10" />
+              <span className="text-3xl font-bold">›</span>
             </Button>
 
             {/* Image Display */}
