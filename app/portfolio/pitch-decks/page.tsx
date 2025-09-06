@@ -184,7 +184,11 @@ export default function NewPitchDecksPage() {
                 variant="ghost"
                 size="icon"
                 className="text-black hover:text-white hover:bg-black w-10 h-10 rounded-full transition-all duration-200 text-lg font-bold"
-                onClick={prevImage}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  console.log("[v0] Previous button clicked")
+                  prevImage()
+                }}
               >
                 ‹
               </Button>
@@ -201,7 +205,11 @@ export default function NewPitchDecksPage() {
                 variant="ghost"
                 size="icon"
                 className="text-black hover:text-white hover:bg-black w-10 h-10 rounded-full transition-all duration-200 text-lg font-bold"
-                onClick={nextImage}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  console.log("[v0] Next button clicked")
+                  nextImage()
+                }}
               >
                 ›
               </Button>
@@ -214,7 +222,11 @@ export default function NewPitchDecksPage() {
                 variant="ghost"
                 size="icon"
                 className="text-black hover:text-white hover:bg-black w-10 h-10 rounded-full transition-all duration-200 text-lg font-bold"
-                onClick={closeModal}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  console.log("[v0] Close button clicked")
+                  closeModal()
+                }}
               >
                 ×
               </Button>
