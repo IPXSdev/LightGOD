@@ -85,9 +85,7 @@ Sent from lightgod.fyi/contact`
       await navigator.clipboard.writeText("ipxsdev@gmail.com")
       setEmailCopySuccess(true)
       setTimeout(() => setEmailCopySuccess(false), 2000)
-    } catch (err) {
-      console.error("Failed to copy email:", err)
-    }
+    } catch (err) {}
   }
 
   const handleCopyQuestionnaire = async () => {
@@ -107,9 +105,7 @@ Message: ${formData.message}`
       await navigator.clipboard.writeText(questionnaire)
       setInquiryCopySuccess(true)
       setTimeout(() => setInquiryCopySuccess(false), 2000)
-    } catch (err) {
-      console.error("Failed to copy questionnaire:", err)
-    }
+    } catch (err) {}
   }
 
   const handleInputChange = (field: string, value: string) => {

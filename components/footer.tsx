@@ -10,30 +10,30 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <Link href="/" className="font-heading text-xl font-bold tracking-tight">
-              <span className="text-black">Light</span>
-              <span className="text-black">God</span>
+              <span className="text-white">Light</span>
+              <span className="text-white">God</span>
             </Link>
-            <p className="mt-2 text-sm text-black">
+            <p className="mt-2 text-sm text-white/70">
               Creative technologist and director shaping worlds across film, Ai, design, and photography.
             </p>
           </div>
 
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-black mb-4">Contact</h3>
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-white mb-4">Contact</h3>
             <div className="flex space-x-4">
-              <Link href="/contact" className="text-black hover:text-[#FF1A2D] transition-colors">
+              <Link href="/contact" className="text-white/70 hover:text-[#FF1A2D] transition-colors">
                 <Mail className="h-5 w-5" />
               </Link>
             </div>
           </div>
 
           <div>
-            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-black mb-4">Resources</h3>
+            <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-white mb-4">Resources</h3>
             <div className="space-y-2">
-              <Link href="/about" className="block text-sm text-black hover:text-[#FF1A2D] transition-colors">
+              <Link href="/about" className="block text-sm text-white/70 hover:text-[#FF1A2D] transition-colors">
                 Press Kit
               </Link>
-              <Link href="/contact" className="block text-sm text-black hover:text-[#FF1A2D] transition-colors">
+              <Link href="/contact" className="block text-sm text-white/70 hover:text-[#FF1A2D] transition-colors">
                 Commission Work
               </Link>
             </div>
@@ -41,7 +41,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-white/10 text-center">
-          <p className="text-sm text-black">© {currentYear} LightGod. All rights reserved.</p>
+          <p className="text-sm text-white/70">© {currentYear} LightGod. All rights reserved.</p>
         </div>
       </div>
     </footer>

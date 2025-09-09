@@ -33,7 +33,7 @@ export function FilterBar({ selectedCategory, onCategoryChange, searchQuery, onS
 
   const handleCategoryChange = (category: Category | "All") => {
     if (category === "Merch") {
-      window.location.href = "/shop"
+      window.location.href = "/shop/fine-art"
       scrollToTop()
       return
     }
@@ -64,7 +64,7 @@ export function FilterBar({ selectedCategory, onCategoryChange, searchQuery, onS
             className={`cursor-pointer transition-colors ${
               selectedCategory === category
                 ? "bg-[#FF1A2D] text-white hover:bg-[#FF1A2D]/80"
-                : "border-white/20 text-white/70 hover:border-[#FF1A2D]/50 hover:text-[#FF1A2D]"
+                : "border-black/20 text-black hover:border-[#FF1A2D]/50 hover:text-[#FF1A2D]"
             }`}
             onClick={() => handleCategoryChange(category)}
           >

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Build timestamp: 2025-09-06T18:45:00Z
   eslint: {
     ignoreDuringBuilds: true,
   },

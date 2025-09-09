@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
-// FORCE NEW DEPLOYMENT: 2025-08-24T23:45:00Z - FIXED IMPORT ERROR
 const DECK_IMAGES = [
   {
     src: "/images/pitch-decks/the-sitter-cover.png",
@@ -46,26 +47,20 @@ const DECK_IMAGES = [
 ]
 
 export default function NewPitchDecksPage() {
-  console.log("[v0] NEW PITCH DECKS PAGE LOADED - IMPORT ERROR FIXED")
-  console.log("[v0] Total deck images:", DECK_IMAGES.length)
-
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set())
 
   const openModal = (index: number) => {
-    console.log("[v0] Opening modal for deck:", index)
     setSelectedImage(index)
   }
 
   const closeModal = () => {
-    console.log("[v0] Closing modal")
     setSelectedImage(null)
   }
 
   const nextImage = () => {
     if (selectedImage !== null) {
       const next = (selectedImage + 1) % DECK_IMAGES.length
-      console.log("[v0] Next image:", next)
       setSelectedImage(next)
     }
   }
@@ -73,19 +68,24 @@ export default function NewPitchDecksPage() {
   const prevImage = () => {
     if (selectedImage !== null) {
       const prev = selectedImage === 0 ? DECK_IMAGES.length - 1 : selectedImage - 1
-      console.log("[v0] Previous image:", prev)
       setSelectedImage(prev)
     }
   }
 
   const handleImageError = (index: number) => {
-    console.log("[v0] Image error for index:", index)
     setImageErrors((prev) => new Set(prev).add(index))
   }
 
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
+        <div className="mb-8">
+          <Link href="/portfolio" className="inline-flex items-center text-black hover:text-red-600 transition-colors">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Portfolio
+          </Link>
+        </div>
+
         {/* Header Section */}
         <div className="text-center mb-16">
           <h1 className="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-red-500 via-purple-600 to-blue-600 bg-clip-text text-transparent">
@@ -186,7 +186,6 @@ export default function NewPitchDecksPage() {
                 className="text-black hover:text-white hover:bg-black w-10 h-10 rounded-full transition-all duration-200 text-lg font-bold"
                 onClick={(e) => {
                   e.stopPropagation()
-                  console.log("[v0] Previous button clicked")
                   prevImage()
                 }}
               >
@@ -207,7 +206,6 @@ export default function NewPitchDecksPage() {
                 className="text-black hover:text-white hover:bg-black w-10 h-10 rounded-full transition-all duration-200 text-lg font-bold"
                 onClick={(e) => {
                   e.stopPropagation()
-                  console.log("[v0] Next button clicked")
                   nextImage()
                 }}
               >
@@ -224,7 +222,6 @@ export default function NewPitchDecksPage() {
                 className="text-black hover:text-white hover:bg-black w-10 h-10 rounded-full transition-all duration-200 text-lg font-bold"
                 onClick={(e) => {
                   e.stopPropagation()
-                  console.log("[v0] Close button clicked")
                   closeModal()
                 }}
               >

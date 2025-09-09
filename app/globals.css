@@ -122,33 +122,7 @@
   body {
     @apply bg-background text-foreground;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  span,
-  div,
-  a,
-  li,
-  td,
-  th,
-  label,
-  button {
-    color: #000000 !important;
-  }
-
-  .text-muted-foreground {
-    color: #000000 !important;
-  }
-
-  .text-gray-600,
-  .text-gray-500,
-  .text-gray-400 {
-    color: #000000 !important;
-  }
+  /* Removed global black text override that was causing contrast issues */
 }
 
 body {

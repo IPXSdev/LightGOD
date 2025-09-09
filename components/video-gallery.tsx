@@ -16,8 +16,8 @@ export function VideoGallery({ videos }: VideoGalleryProps) {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="font-heading text-3xl font-bold mb-4 text-white">Directed & Produced</h2>
-        <p className="text-white/70">
+        <h2 className="font-heading text-3xl font-bold mb-4 text-black">Directed & Produced</h2>
+        <p className="text-black">
           A selection of music videos, series, and creative projects showcasing cinematic storytelling.
         </p>
       </div>

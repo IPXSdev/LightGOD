@@ -1,8 +1,6 @@
 import type { Project } from "./types"
 import { VIDEOS } from "./videos"
 
-console.log("[v0] Loading projects data...")
-
 export const PROJECTS: Project[] = [
   {
     slug: "pitch-decks",
@@ -19,7 +17,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "video-gallery",
-    title: "Directed & Produced – Watch",
+    title: "Directed & Produced\nBy LightGod",
     category: ["Filmmaking", "Music Video"],
     role: ["Director", "Producer", "Editor"],
     services: ["Direction", "Production", "Post"],
@@ -80,7 +78,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "saturated-melanin",
-    title: "Saturated Melanin (Fine Art Book)",
+    title: "Saturated Melanin",
     category: ["Merch", "Photography"],
     year: 2024,
     role: ["Photographer", "Poet", "Creative Director"],
@@ -91,13 +89,5 @@ export const PROJECTS: Project[] = [
     brief: "Coffee table book blending ultraviolet-driven photography with intimate verse.",
     process: "Concept → set/lighting → poetry pairing → layout → gallery edit.",
     results: "Flagship personal project; exhibition-ready series.",
-    media: [{ type: "pdf", caption: "Private preview available on request." }],
   },
 ]
-
-console.log(
-  "[v0] Loaded",
-  PROJECTS.length,
-  "projects with slugs:",
-  PROJECTS.map((p) => p.slug),
-)

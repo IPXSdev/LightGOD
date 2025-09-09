@@ -50,14 +50,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
         )}
       </div>
       <CardContent className="p-6">
-        <h3 className="font-heading text-xl font-bold mb-2 group-hover:text-[#FF1A2D] transition-colors">
+        <h3 className="font-heading text-xl font-bold mb-2 group-hover:text-[#FF1A2D] transition-colors text-black">
           {project.title}
         </h3>
-        <p className="text-white/70 mb-4">{project.summary}</p>
+        <p className="text-black/70 mb-4">{project.summary}</p>
         <div className="flex items-center justify-between">
           <div className="flex flex-wrap gap-1">
             {project.role.slice(0, 2).map((role) => (
-              <span key={role} className="text-xs text-white/50 font-mono">
+              <span key={role} className="text-xs text-black/50 font-mono">
                 {role}
               </span>
             ))}
